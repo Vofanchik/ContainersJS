@@ -1,22 +1,18 @@
-export default class Team {
+// let errorList = new Map();
+
+export default class ErrorRepository {
   constructor() {
-    this.members = new Set();
+    this.list = new Map([
+      [1, 'First error'],
+      [2, 'Second error'],
+      [3, 'Third error'],
+    ]);
   }
 
-  add(personage) {
-    if (this.members.has(personage)) {
-      throw new Error('Этот персонаж уже в команде');
+  translate(code) {
+    if (this.list.has(code)) {
+      return this.list.get(code);
     }
-    this.members.add(personage);
-  }
-
-  addAll(personages) {
-    [...personages].forEach((personage) => {
-      this.members.add(personage);
-    });
-  }
-
-  toArray() {
-    return Array.from(this.members);
+    return 'Unknown error';
   }
 }
